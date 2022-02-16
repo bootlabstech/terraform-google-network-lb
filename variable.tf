@@ -6,7 +6,43 @@ variable "project" {
 }
 
 variable "region" {
-  description = "All resources will be launched in this region."
+  description =  <<-EOT
+    {
+   "type": "api",
+   "purpose": "autocomplete",
+   "data":[ "asia-east1",
+        "asia-east2",
+        "asia-northeast1",
+        "asia-northeast2",
+        "asia-northeast3",
+        "asia-south1",
+        "asia-south2",
+        "asia-southeast1",
+        "asia-southeast2",
+        "australia-southeast1",
+        "australia-southeast2",
+        "europe-central2",
+        "europe-north1",
+        "europe-west1",
+        "europe-west2",
+        "europe-west3",
+        "europe-west4",
+        "europe-west6",
+        "northamerica-northeast1",
+        "northamerica-northeast2",
+        "southamerica-east1",
+        "southamerica-west1",
+        "us-central1",
+        "us-east1",
+        "us-east4",
+        "us-west1",
+        "us-west2",
+        "us-west3",
+        "us-west4"
+    ],
+   "description": "All resources will be launched in this region."
+}
+  EOT
   type        = string
 }
 
@@ -16,7 +52,17 @@ variable "name" {
 }
 
 variable "load_balancing_scheme" {
-  description = "This signifies what the ForwardingRule will be used for and can be EXTERNAL, INTERNAL, or INTERNAL_MANAGED"
+  description = <<-EOT
+  {
+   "type": "json",
+   "purpose": "autocomplete",
+   "data": [
+  "EXTERNAL",
+  "INTERNAL",
+  "INTERNAL_MANAGED"
+   ],
+   "description":"This signifies what the ForwardingRule will be used for"
+EOT
   type        = string
 }
 
@@ -38,7 +84,17 @@ variable "instances" {
 #OPTIONAL 
 
 variable "protocol" {
-  description = "The protocol for the backend and frontend forwarding rule. TCP or UDP."
+  description = <<-EOT
+  {
+   "type": "json",
+   "purpose": "autocomplete",
+   "data": [
+  "TCP",
+  "UDP"
+   ],
+   "description":"The protocol for the backend and frontend forwarding rule"
+   }
+EOT
   type        = string
   default     = "TCP"
 }
@@ -56,7 +112,18 @@ variable "port_range" {
 }
 
 variable "enable_health_check" {
-  description = "Flag to indicate if health check is enabled. If set to true, a firewall rule allowing health check probes is also created."
+  description = <<-EOT
+  {
+   "type": "bool",
+   "purpose": "autocomplete",
+   "data": [
+  "true",
+  "false"
+   ],
+   "default":false
+   "description": "Flag to indicate if health check is enabled. If set to true, a firewall rule allowing health check probes is also created."
+}
+EOT 
   type        = bool
   default     = false
 }
@@ -104,12 +171,20 @@ variable "firewall_target_tags" {
 }
 
 variable "session_affinity" {
-  description = "The session affinity for the backends, e.g.: NONE, CLIENT_IP. Default is `NONE`."
+  description = <<-EOT
+  {
+   "type": "json",
+   "purpose": "autocomplete",
+   "data": [
+  "NONE",
+  "CLIENT_IP"
+   ],
+   "description":"The session affinity for the backends."
+}
+EOT 
   type        = string
   default     = "NONE"
 }
-
-
 variable "custom_labels" {
   description = "A map of custom labels to apply to the resources. The key is the label name and the value is the label value."
   type        = map(string)
