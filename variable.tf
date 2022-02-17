@@ -8,7 +8,7 @@ variable "project" {
 variable "region" {
   description =  <<-EOT
     {
-   "type": "api",
+   "type": "json",
    "purpose": "autocomplete",
    "data":[ "asia-east1",
         "asia-east2",
@@ -62,6 +62,7 @@ variable "load_balancing_scheme" {
   "INTERNAL_MANAGED"
    ],
    "description":"This signifies what the ForwardingRule will be used for"
+   }
 EOT
   type        = string
 }
@@ -114,13 +115,13 @@ variable "port_range" {
 variable "enable_health_check" {
   description = <<-EOT
   {
-   "type": "bool",
+   "type": "json",
    "purpose": "autocomplete",
    "data": [
   "true",
   "false"
    ],
-   "default":false
+   "default":false,
    "description": "Flag to indicate if health check is enabled. If set to true, a firewall rule allowing health check probes is also created."
 }
 EOT 
