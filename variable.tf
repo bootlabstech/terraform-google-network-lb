@@ -191,3 +191,7 @@ variable "custom_labels" {
   type        = map(string)
   default     = {}
 }
+variable "tags" {
+  type        = string
+  description = "this is for assigning tags."
+}
